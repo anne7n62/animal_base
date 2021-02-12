@@ -4,6 +4,15 @@ window.addEventListener("DOMContentLoaded", start);
 
 const allAnimals = [];
 
+//Creating prototype for animal objects
+const Animal = {
+    name: "",
+    type: "unknown",
+    desc: "-unknown animal-",
+    age: 0,
+};
+
+
 function start( ) {
     console.log("ready");
 
@@ -24,7 +33,34 @@ function prepareObjects( jsonData ) {
     jsonData.forEach( jsonObject => {
         // TODO: Create new object with cleaned data - and store that in the allAnimals array
         
-        // TODO: MISSING CODE HERE !!!
+        
+        //Splitting the string by the spaces
+        const animal = Object.create(Animal);
+        let animalData = jsonObject.fullname.split(" ");
+        console.log(animalData);
+
+        //Name - making variable
+        let animalName = animalData[0];
+        console.log(animalName);
+        animal.name = animalName;
+
+        //Description
+        let animalDesc = animalData[2];
+        console.log(animalDesc);
+        animal.desc = animalDesc;
+
+        //Type
+        let animalType = animalData[3];
+        console.log(animalType);
+        animal.type = animalType;
+
+        //Age - here we just need the jsonobject age
+        let animalAge = jsonObject.age;
+        console.log(animalAge);
+        animal.age = animalAge;
+
+    //Adding all the objects into the array
+    allAnimals.push(animal);
     });
 
     displayList();
